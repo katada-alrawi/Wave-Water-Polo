@@ -1,16 +1,16 @@
 
-import  {useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { NavLink,useNavigate,useLocation} from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
-import photoURL from "../../assets/home/1-3.jpg";
- import { FaBars} from "react-icons/fa";
 import { motion } from "framer-motion";
+import photoURL from "../../assets/home/1-3.jpg";
+import { FaBars} from "react-icons/fa";
 
 const navLinks = [
   { name: "Home", route: "/" },
-  { name: "Instructors", route: "/Instructors" },
-  { name: "Classes", route: "/Classes" },
+  { name: "Instructors", route: "/instructors" },
+  { name: "Classes", route: "/classes" },
 ];
 
 const materialTheme = createTheme({
@@ -33,7 +33,7 @@ function Navbar() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [navBg, setNavBg] = useState("bg-[#15151580]");
+  const [navBg, setNavBg] = useState("bg-[#151580]");
   const user = true;
 
   const toggleMobileMenu = () => {
@@ -45,15 +45,14 @@ function Navbar() {
     const root = window.document.documentElement;
     if (isDarkMode) {
       root.classList.add(darkClass);
-      react - icon;
-;
     } else {
       root.classList.remove(darkClass);
     }
-  }, [isDarkMode]);
+}, [isDarkMode]);
 
   useEffect(() => {
     setIsHome(location.pathname === "/");
+    setIsLogin(location.pathname === "/login");
     setIsFixed(
       location.pathname === "/register" || location.pathname === "/login"
     );
@@ -72,7 +71,7 @@ function Navbar() {
     if (scrollPosition < 100) {
       if (isHome) {
         setNavBg(
-          "bg-white backdrop-filter backdrop-blur-md bg-opacity-0 dark:text-white text-black"
+          "bg-white backdrop-filter backdrop-blur-xl bg-opacity-0 dark:text-white text-black"
         );
       } else {
         setNavBg("bg-white dark:bg-black dark:text-white text-black");
@@ -86,30 +85,27 @@ function Navbar() {
         } dark:text-white text-white`
       );
     }
-  }, [scrollPosition, isHome, location.pathname]);
+  }, [scrollPosition]);
 
   const handelLogout = () => {
     console.log("Logged out");
   };
 
   return (
-    <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={`${
-        isHome ? navBg : "bg-white dark:bg-black backdrop-blur-2xl"
-      } ${
-        isFixed ? "static" : "fixed"
-      }top-0 transition-colors duration-500 ease-in-out w-full z-10`}
-    >
+     <motion.nav 
+     initial={{opacity:0}}
+     animate={{opacity: 1}}
+     transition={{duration: 0.5}}
+     className={`${isHome ? navBg :"bg-white dark:bg-black backdrop-blur-2xl"} ${isFixed ? 'static' : 'fixed'}top-0 transition-colors duration-500 ease-in-out w-full z-10`}>
+      
       <div className="lg:w-[95%] mx-auto sm:px-6 lg:px-6">
-        <div className="px-4 py-4 flex items-center justify-between">
+        <div className="px-4 py-4 flex items-center justify-between ">
           {/* {LOGO} */}
           <div
             onClick={() => navigate("/")}
             className="flex-shrink-0 cursor-pointer pl-7 md:p-0 flex items-center"
           >
+            <div>
             <h1 className="text-2xl inline-flex gap-3 items-center font-bold">
               Wave water Polo
               <img
@@ -121,6 +117,7 @@ function Navbar() {
             <p className="font-bold text-[13px] tracking-[8px]">
               Quick Explore
             </p>
+            </div>
           </div>
           {/* mobile menu icon  */}
           <div className="md:hidden flex items-center">
@@ -140,7 +137,7 @@ function Navbar() {
                   <li key={link.route}>
                     <NavLink
                       to={link.route}
-                      style={{whiteSpace:'nowrap'}}
+                       style={{whiteSpace:'nowrap'}}
                       className={({ isActive }) =>
                         `font-bold ${
                           isActive
@@ -199,20 +196,20 @@ function Navbar() {
 
                 {user && (
                   <li>
-                    <NavLink
-                      to="dashboard"
-                      className={({ isActive }) =>
-                        `font-bold ${
-                          isActive
-                            ? "text-secondary"
-                            : navBg.includes("bg-transparent")
-                            ? "text-white"
-                            : "text-black dark:text-white"
-                        } hover:text-secondary duration-300`
-                      }
-                    >
-                      Dashboard
-                    </NavLink>
+                  <NavLink
+  to="/dashboard"
+  className={({ isActive }) =>
+    `font-bold ${
+      isActive
+        ? "text-secondary"
+        : navBg.includes("bg-transparent")
+        ? "text-white"
+        : "text-black dark:text-white"
+    } hover:text-secondary duration-300`
+  }
+>
+  Dashboard
+</NavLink>
                   </li>
                 )}
                 {user && (
