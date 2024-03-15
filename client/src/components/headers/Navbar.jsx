@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState } from "react";
 import { NavLink,useNavigate,useLocation} from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -33,8 +32,9 @@ function Navbar() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [navBg, setNavBg] = useState("bg-[#151580]");
-  const user = true;
+  const [navBg, setNavBg] = useState("bg-transparent backdrop-filter backdrop-blur-xl");
+
+  const user = false;
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -71,21 +71,20 @@ function Navbar() {
     if (scrollPosition < 100) {
       if (isHome) {
         setNavBg(
-          "bg-white backdrop-filter backdrop-blur-xl bg-opacity-0 dark:text-white text-black"
+          " bg-white backdrop-filter backdrop-blur-xl bg-opacity-0 dark:text-white  text-black"
         );
-      } else {
-        setNavBg("bg-white dark:bg-black dark:text-white text-black");
+       } else {
+         setNavBg("bg-white dark:bg-black dark:text-white text-black");
       }
     } else {
       setNavBg(
-        `${
-          isHome || location.pathname === "/"
-            ? "bg-transparent"
-            : "bg-white dark:bg-black"
-        } dark:text-white text-white`
+        isHome || location.pathname === "/" 
+          ? "bg-transparent dark:text-white text-white" 
+          : "bg-transparent  dark:text-white text-white"
       );
     }
-  }, [scrollPosition]);
+  }, [scrollPosition, isHome, location.pathname]);
+  
 
   const handelLogout = () => {
     console.log("Logged out");
@@ -96,7 +95,7 @@ function Navbar() {
      initial={{opacity:0}}
      animate={{opacity: 1}}
      transition={{duration: 0.5}}
-     className={`${isHome ? navBg :"bg-white dark:bg-black backdrop-blur-2xl"} ${isFixed ? 'static' : 'fixed'}top-0 transition-colors duration-500 ease-in-out w-full z-10`}>
+    className={`${isHome ? navBg :"bg-white dark:bg-black backdrop-blur-2xl"} ${isFixed ? 'static' : 'fixed'}top-0 transparent-color duration-500 ease-in-out w-full z-10`}>
       
       <div className="lg:w-[95%] mx-auto sm:px-6 lg:px-6">
         <div className="px-4 py-4 flex items-center justify-between ">

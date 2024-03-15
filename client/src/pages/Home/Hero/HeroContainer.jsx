@@ -1,71 +1,68 @@
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/effect-creative'
-import {EffectCreative} from 'swiper'
+import 'swiper/css/effect-creative';
 import Hero from './Hero';
 import Hero2 from './Hero2';
+import Hero3 from './Hero3';
+import Hero4 from './Hero4';
 
-function HeroContainer() {
+export default () => {
   return (
-    <section>
-        <Swiper
-        grabCursor={true}
-        effect={'creative'}
-        creativeEffect={{
-            prev:{
-                shadow: true,
-                translate:["-120%", 0, -500]
-            },
-            next:{
-                shadow: true,
-                translate:["-120%", 0, -500]
-            },
-        }}
-        modules={[EffectCreative]}
-        className='mySwiper5'
-        loop={true}
-        autoplay={
-            {
-                delay: 250,
-                disableOnInteraction: false,
-            }
-        }
-        >
-            <SwiperSlide>
+    <Swiper
+      spaceBetween={0}
+      slidesPerView={1} // Set slidesPerView to 1 to display one slide at a time
+      effect={"creative"}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper) => console.log(swiper)}
+    >
+      <SwiperSlide><Hero /></SwiperSlide>
+      <SwiperSlide><Hero2 /></SwiperSlide>
+      <SwiperSlide><Hero3 /></SwiperSlide>
+      <SwiperSlide><Hero4 /></SwiperSlide>
+    </Swiper>
+  );
+};
 
-                <Hero/>
-            </SwiperSlide>
-        </Swiper>
-        <Swiper>
-            <SwiperSlide>
-                <Hero2/>
-            </SwiperSlide>
-        </Swiper>
 
-    </section>
-  )
-}
 
-export default HeroContainer
-
-// Import Swiper React components
-// import { Swiper, SwiperSlide } from 'swiper/react';
-
- 
-// import 'swiper/css';
-
-// export default () => {
+// function HeroContainer() {
 //   return (
-//     <Swiper
-//       spaceBetween={50}
-//       slidesPerView={3}
-//       onSlideChange={() => console.log('slide change')}
-//       onSwiper={(swiper) => console.log(swiper)}
-//     >
-//       <SwiperSlide><Hero /> </SwiperSlide>
-//       <SwiperSlide><Hero2 /></SwiperSlide>
-      
-      
-//     </Swiper>
-//   );Import Swiper styles
-// };
+//     <section>
+//         <Swiper  
+//         grabCursor={true}
+//         effect={"creative"}
+//         creativeEffect={{
+//             prev:{
+//                 shadow: true,
+//                 translate:["-120%", 0, -500]
+//             },
+//             next:{
+//                 shadow: true,
+//                 translate:["-120%", 0, -500]
+//             },
+//         }}
+//         modules={[EffectCreative]}
+//         className='mySwiper5'
+//         loop={true}
+//         autoplay={
+//             {
+//                 delay: 250,
+//                 disableOnInteraction: false,
+//             }
+//         }>
+//             <SwiperSlide>
+//                 <Hero/>
+//             </SwiperSlide>
+//         </Swiper>
+//         <Swiper>
+//             <SwiperSlide>
+//                 <Hero2/>
+//             </SwiperSlide>
+//         </Swiper>
+
+//     </section>
+//   )
+// }
+
+// export default HeroContainer;
