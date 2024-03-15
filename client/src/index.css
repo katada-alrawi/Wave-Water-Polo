@@ -33,3 +33,13 @@ body {
   background: #b68bdcf1;
   transition: 1s;
 }
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+nav > div {
+  background-color: #fff8;
+}
