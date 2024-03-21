@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroContainer from './Hero/HeroContainer'
-import Gallary from './Gallery/Gallery'
+import Gallery from './Gallery/Gallery'
+import Popular from './popularClasses/Popular'
 
 
 function Home() {
@@ -8,7 +9,8 @@ function Home() {
     <div>
       <HeroContainer />
       <div className='max-w-screen-xl mx-auto'>
-      <Gallary />
+      <Gallery />
+      <Popular />
       </div>
     </div>
   )

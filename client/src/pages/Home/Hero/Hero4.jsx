@@ -1,5 +1,5 @@
 import React from 'react'
-import bgImg from '../../../assets/home/under.jpg';
+import bgImg from '../../../assets/home/under.jpeg';
 function Hero4() {
   return (
     <div className='min-h-screen bg-cover' style={{backgroundImage: `url(${bgImg})`}}>

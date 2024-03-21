@@ -30,7 +30,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b68bdcf1;
+  background: #ae77afe9;
   transition: 1s;
 }
 
@@ -40,6 +40,6 @@ nav {
   left: 0;
 }
 
-nav > div {
+/* nav > div {
   background-color: #fff8;
-}
+} */

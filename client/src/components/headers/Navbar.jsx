@@ -71,16 +71,16 @@ function Navbar() {
     if (scrollPosition < 100) {
       if (isHome) {
         setNavBg(
-          " bg-white backdrop-filter backdrop-blur-xl bg-opacity-0 dark:text-white  text-black"
+          " bg-white backdrop-filter backdrop-blur-xl bg-opacity-0 dark:text-gray-500  text-black"
         );
        } else {
-         setNavBg("bg-white dark:bg-black dark:text-white text-black");
+         setNavBg("bg-white dark:bg-black dark:text-gray-500  text-black");
       }
     } else {
       setNavBg(
         isHome || location.pathname === "/" 
-          ? "bg-transparent dark:text-white text-white" 
-          : "bg-transparent  dark:text-white text-white"
+          ? "bg-transparent dark:text-gray-500 text-gray-500" 
+          : "bg-transparent  dark:text-gray-500 text-gray-500"
       );
     }
   }, [scrollPosition, isHome, location.pathname]);
