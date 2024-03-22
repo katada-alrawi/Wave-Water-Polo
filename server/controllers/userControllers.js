@@ -1,47 +1,88 @@
+const user = require('../models/userModel')
+
 //REGISTER  new User
 //post :api/users/register
 
-const registerUser = (req, res, next )=> {
-    res.json("register user")
-}
+const registerUser = async (req, res, next) => {
+    try {
+        const { name, email, password, password2 } = req.body;
+        if (!name || !email || !password || !password2) {
+            return next(new HttpError("Fill in all fields", 422));
+        }
+        
+        const newEmail = email.toLowerCase()
+        const emailExist = await UserActivation.findOne({ email: email })
 
 
-//LOGIN A REGISTER user
+        res.json({ message: "register user" });
+    } catch (error) {
+        return next(new HttpError("User registration failed", 422));
+    }
+};
+
+
+
+
+
+//LOGIN A REGISTER user{ message:
 //post :api/users/login 
 
-const loginUser = (req, res, next )=> {
-    res.json("Login User")
+const loginUser =async (req, res, next )=> {
+    res.json({ message: "Login User" })
 }
+
+
+ 
+
+
 
 
 //USER PROFILE
 //post :api/users/:id
 
-const getUser = (req, res, next )=> {
-    res.json("User Profile")
+const getUser =async (req, res, next )=> {
+    res.json({message:"User Profile"})
 }
+
+
+
+
+
+
 
 //change user avatar (profile image)
 //post :api/users/change-avatar
 //PROTECTED
-const changeAvatar = (req, res, next )=> {
-    res.json("Change User Avatar")
+const changeAvatar = async(req, res, next )=> {
+    res.json({message:"Change User Avatar"})
 }
+
+
+
+
+
+
 
 
 //edit user Details
 //post :api/users/change-avatar
 //PROTECTED
-const editUser = (req, res, next )=> {
-    res.json("Edit user details")
+const editUser = async(req, res, next )=> {
+    res.json({message:"Edit user details"})
 }
+
+
+
+
+
+
 
 
 //edit user Details
 //post :api/users/change-avatar
 //PROTECTED
-const getAuthors = (req, res, next )=> {
-    res.json("Get all users/authors")
+const getAuthors =async (req, res, next )=> {
+    res.json({message:"Get all users/authors"})
 }
 
-module.exports = {registerUser, loginUser, getUser, getAuthors, changeAvatar, editUser, getAuthors}
+module.exports = {registerUser, loginUser, getUser,changeAvatar, editUser, getAuthors}
