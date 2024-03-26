@@ -1,34 +1,29 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
-const fileUpload = require('express-fileupload'); 
+ import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import userRoutes from './routes/userRoutes.js'; // assuming userRoutes.js is an ESM file
+import classRoutes from './routes/classRoutes.js'; // assuming classRoutes.js is an ESM file
 
-const userRoutes = require("./routes/userRoutes");
-const postRoutes = require("./routes/postRoutes");
-const {notFound, errorHandler} = require("./middleware/errorMiddleware");
+// Load environment variables
+dotenv.config();
 
+// Create Express app
 const app = express();
-const PORT = process.env.PORT || 5000;
-app.use(express.json({ extended: true }));
-app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-app.use(fileUpload());
-app.use('/uploads', express.static(__dirname + '/uploads'));
 
+// Middleware
+app.use(express.json());
 
-app.use("/api/users", userRoutes);;
-app.use("/api/posts", postRoutes);
+// MongoDB connection
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@music-cons.epjwsxc.mongodb.net`;
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-app.use(notFound)
-app.use(errorHandler)
+// Use routes
+app.use('/user', userRoutes);
+app.use('/class', classRoutes);
+// Add other routes similarly
 
-
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error(`Error connecting to MongoDB: ${err}`));
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Start server
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
