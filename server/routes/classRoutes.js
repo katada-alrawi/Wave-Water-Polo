@@ -1,7 +1,7 @@
-import express from 'express';
-const router = express.Router();
+import express from 'express '
+const  router = express.Router();
 import { ObjectId } from 'mongoose';
-import verifyJWT from '../middlewares/verifyJWT';
+ import verifyJWT from '../middlewares/verifyJWT';
 import verifyAdmin from '../middlewares/verifyAdmin';
 import verifyInstructor from '../middlewares/verifyInstructor';
 import Class from '../models/classModel';
