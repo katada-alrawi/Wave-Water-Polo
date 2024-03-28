@@ -1,16 +1,11 @@
 {
   "name": "water-polo-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Water Polo Class Management Server",
   "main": "index.js",
-  "type": "module",
-  
-  
   "scripts": {
-    
-    "dev": "nodemon index.js",
-    "start": "node index.js"
-   
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,9 +14,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.2.3",
-    "jsonwebtoken": "^9.0.0",
-    "stripe": "^12.9.0"
-
+    "mongodb": "^6.5.0"
   }
 }
